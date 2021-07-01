@@ -25,6 +25,7 @@ I expect that for future work, additional features could be added to enable the 
 -[ ] Add time series plots to detect process shifts
 -[ ] Add capability for data outlier detection
 -[ ] Add capability for mean data analysis
+
 ## Build and Run
 1. on command line launch: Nodemon index.js
 2. From a browser launch application at http://localhost:5000
