@@ -11,12 +11,8 @@ const report_dir = 'ScheduledOutput'//'C:\\temp\\ScheduledOutput'
 const host_name = `http://localhost:${port}`
 
 
-// Add your code here
-
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('../public'));
-//app.use(express.static(__dirname)+'../public'); // serves resources from public folder
-//app.use('/static', express.static(path.join(__dirname, 'public')))
 
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));

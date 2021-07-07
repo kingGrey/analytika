@@ -29,7 +29,7 @@ I expect that for future work, additional features could be added to enable the 
 ## Build and Run
 1. on command line cd into project path `c:\<...>\analytika\public`
 2. launch: `node|nodemon jscripts\index.js`
-3. From a browser launch application at http://localhost:5000
+3. From a browser launch application at `http://localhost:5000`
 
 ## Example
 This configuration file contains the main settings the users would like the program to
