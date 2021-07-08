@@ -1,7 +1,7 @@
 '''unique identifier'''
 name = 'test_name'
 '''local input file'''
-input_data_file = r'C:\Users\acgreyjo\OneDrive - Intel Corporation\Documents\School\CS 561 - Open Source\Project\analytika\application\data\beef.csv'
+input_data_file = r''
 '''url data source'''
 url_to_data = ''
 '''categorical column not to be processed'''
