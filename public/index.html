@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Analytika</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script defer src="jscripts/helper.js"></script>
+
+  </head>
+  <body >
+    <main >
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarText">
+           <ul class="navbar-nav mr-auto">
+             <li class="nav-item active">
+               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">Help</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">About</a>
+             </li>
+           </ul>
+         </div>
+       </nav>
+      <div class="card" >
+         <h1>Analytika</h1>
+         <img src="img/Avatar.jpg" alt="img/Avatar.jpg" >
+         <br><br>
+         <button type="button" class='btn btn-secondary btn-lg btn-block' id="ad_hoc_btn">Ad-Hoc</button><br>
+         <button type="button" class="btn btn-secondary btn-lg btn-block" id="schedule_btn">Schedule</button><br>
+         <button type="button" class="btn btn-secondary btn-lg btn-block" id="report_btn">Report</button>
+       <br><a href="#"  style="padding-top:20px;text-decoration: none" id="more_info" data-toggle="modal" data-target="#myModal" class="btn btn-info btn-lg">More Info &gt;&gt;</a>
+     </div>
+     <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Analytika</h4>
+            </div>
+            <div class="modal-body">
+              <h3>Analyze, Correlates, Summerize and Display plot distribution of input data</h3>
+                @contact: acgreyjo
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

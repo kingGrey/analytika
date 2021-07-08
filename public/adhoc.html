@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Analytika-adhoc</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <link rel="stylesheet" href="css/index.css" />
+    <script defer src="jscripts/adhoc.js"></script>
+  </head>
+  <body >
+    <main >
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarText">
+           <ul class="navbar-nav mr-auto">
+             <li class="nav-item active">
+               <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+             </li>
+           </ul>
+           <h4 class="text-white">AD-HOC</h4>
+         </div>
+       </nav>
+       <div class="card" >
+            <div class="form-group">
+                <label for="adhoc_config_input">Configuration</label>
+                <input type="file" class="form-control" id="adhoc_config_input" placeholder="Configuration..." required>              
+            </div><br>
+            <button type="submit" class='btn btn-primary btn-lg btn-block' id="adhoc_run_btn">Run</button><br>
+            <button type="button" class="btn btn-secondary btn-lg btn-block" id="adhoc_cncl_btn">Cancel</button>
+        </div>
+    </main>
+  </body>
+</html>
