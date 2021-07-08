@@ -1,9 +1,7 @@
 '''unique identifier'''
 name = 'test_name'
-'''local input file'''
-input_data_file = r''
 '''url data source'''
-url_to_data = ''
+url_to_data = 'http://jse.amstat.org/datasets/body.dat.txt'
 '''categorical column not to be processed'''
 ignore_columns = []
 '''x column'''
