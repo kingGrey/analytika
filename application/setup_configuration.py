@@ -5,7 +5,7 @@ url_to_data = 'http://jse.amstat.org/datasets/body.dat.txt'
 '''categorical column not to be processed'''
 ignore_columns = []
 '''x column'''
-x_column = ['Weight']
+x_column = ['Weight','Age']
 '''y column'''
 y_column = ['Biacromial diameter']
 '''column(s) names to group by'''
