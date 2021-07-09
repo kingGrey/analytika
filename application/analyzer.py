@@ -10,7 +10,7 @@ import argparse
 import pandas as pd
 import io
 import requests
-from processor import *
+from analytika.application.processor import *
 
 class Analyzer(object):
     def __init__(self, setup_config='', proxy=''):
@@ -117,15 +117,24 @@ class Analyzer(object):
             process and plot base on distribution
         :return:
         '''
-        proc_hdl = PlotterBase()
-        proc_hdl.dFrame = self.dFrame
-        proc_hdl.task_name = self.task_name
-        proc_hdl.x_columns = self.x_column
-        proc_hdl.y_columns = self.y_column
-        proc_hdl.groupby = self.groupby_column
-        proc_hdl.dist_type = self.dist_types
-        if proc_hdl:
-            proc_hdl.runner()
+        for plot_type in self.dist_types:
+            print(f'[-i-] Running Plot type: {plot_type}')
+            if plot_type.lower() == 'dist':
+                print('Processing for dist.')
+                from analytika.application.dist import Dist
+                dist_obj = Dist()
+            elif plot_type.lower() == 'dist_by':
+                print('Processing for distby')
+            elif plot_type.lower() == 'var':
+                print('Processing for variability')
+
+            dist_obj.dFrame = self.dFrame
+            dist_obj.task_name = self.task_name
+            dist_obj.x_columns = self.x_column
+            dist_obj.y_columns = self.y_column
+            dist_obj.groupby = self.groupby_column
+            if dist_obj:
+                dist_obj.visualize()
 
 
 def parse_options():
