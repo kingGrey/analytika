@@ -1,15 +1,22 @@
+################################################################
+__author__='acgreyjo'
+#
+#
+#
+################################################################
 import os
 import importlib
 import argparse
 import pandas as pd
 import io
 import requests
-
+from processor import *
 
 class Analyzer(object):
     def __init__(self, setup_config='', proxy=''):
         self.config_file = setup_config
         self.proxy = proxy
+        self.task_name = ''
         self.dFrame = None
         self.url_to_data = ''
         self.output_file_path = ''
@@ -19,6 +26,7 @@ class Analyzer(object):
         self.treatment_column = []
         self.x_column = []
         self.y_column = []
+        self.dist_types = []
         self.input_validate()
 
     def input_validate(self):
@@ -38,6 +46,7 @@ class Analyzer(object):
             setup_mod_obj = module
 
         assert hasattr(setup_mod_obj, 'url_to_data')
+        assert hasattr(setup_mod_obj, 'task_name')
         assert hasattr(setup_mod_obj, 'output_file_path')
         assert hasattr(setup_mod_obj, 'hdf5_file_name')
         assert hasattr(setup_mod_obj, 'column_groupby')
@@ -46,8 +55,10 @@ class Analyzer(object):
         assert hasattr(setup_mod_obj, 'treatment_column')
         assert hasattr(setup_mod_obj, 'x_column')
         assert hasattr(setup_mod_obj, 'y_column')
+        assert hasattr(setup_mod_obj, 'dist_type')
 
         self.url_to_data = setup_mod_obj.url_to_data
+        self.task_name = setup_mod_obj.task_name
         self.output_file_path = setup_mod_obj.output_file_path
         self.groupby_column = setup_mod_obj.column_groupby
         self.program_name = setup_mod_obj.program_name
@@ -55,6 +66,7 @@ class Analyzer(object):
         self.treatment_column = setup_mod_obj.treatment_column
         self.x_column = setup_mod_obj.x_column
         self.y_column = setup_mod_obj.y_column
+        self.dist_types = setup_mod_obj.dist_type
         print('[-i-] Config Validation Completed.')
 
     def load_data(self):
@@ -100,6 +112,22 @@ class Analyzer(object):
         if not self.dFrame.empty:
             self.dFrame.to_csv(file_path, index=False)
 
+    def process_data(self):
+        '''
+            process and plot base on distribution
+        :return:
+        '''
+        proc_hdl = PlotterBase()
+        proc_hdl.dFrame = self.dFrame
+        proc_hdl.task_name = self.task_name
+        proc_hdl.x_columns = self.x_column
+        proc_hdl.y_columns = self.y_column
+        proc_hdl.groupby = self.groupby_column
+        proc_hdl.dist_type = self.dist_types
+        if proc_hdl:
+            proc_hdl.runner()
+
+
 def parse_options():
     #   parse the command line input
     parser = argparse.ArgumentParser()
@@ -117,5 +145,5 @@ if __name__ == '__main__':
     use_proxy = options.proxy
     run_analyzer = Analyzer(setup_config=config_file, proxy=use_proxy)
     run_analyzer.load_data()
-    with open(r'c:\Temp\writeme.txt','w') as f:
-        f.write('Things fall apart')
+    run_analyzer.process_data()
+    print('[-i-] Task Completed.')
