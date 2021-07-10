@@ -7,10 +7,10 @@ import plotly.express as px
 import plotly.graph_objs as go
 
 
-class Dist(PlotterBase):
+class Hist_2D(PlotterBase):
     def __init__(self):
         print('[-i-] Processing {}...'.format(self.__class__.__name__))
-        super(Dist, self).__init__()
+        super(Hist_2D, self).__init__()
 
     def visualize(self):
         print('[-i-] Executing visualize...')
@@ -23,21 +23,21 @@ class Dist(PlotterBase):
         cur_row = 1
         cur_col = 1
         print('====Columns======',self.x_columns)
-        for x_col_item in self.x_columns:
-            print('==================',x_col_item)
-            fig.append_trace(go.Histogram(x=self.dFrame[x_col_item], name=x_col_item.upper()),row=cur_row,col=cur_col)
-            fig.update_xaxes(title_text=x_col_item.upper(), row=cur_row, col=cur_col)
-            fig.update_yaxes(title_text='Count', row=cur_row, col=cur_col)
-            if cur_col == cols:
-                cur_row += 1
-            else:
-                cur_col += 1
+        for y_col_item in self.y_columns:
+            for x_col_item in self.x_columns:
+                fig.append_trace(go.Histogram2d(x=self.dFrame[x_col_item], y=self.dFrame[y_col_item],name=x_col_item.upper()),row=cur_row,col=cur_col)
+                fig.update_xaxes(title_text=x_col_item.upper(), row=cur_row, col=cur_col)
+                fig.update_yaxes(title_text=y_col_item.upper(), row=cur_row, col=cur_col)
+                if cur_col == cols:
+                    cur_row += 1
+                else:
+                    cur_col += 1
         fig.update_layout(
             paper_bgcolor='black',
             plot_bgcolor='black',
             height=400,
             width=850,
-            title_text='Dist',
+            title_text='DistBy',
             # title_font_size=14,
             legend_title="Legend Title",
             font=dict(

@@ -19,4 +19,4 @@ program_name = 'PGM1'
 '''seperabale column identification'''
 treatment_column = []
 '''disribution type'''
-dist_type = ['dist','dist_by']        # dist, disby, variability,
+dist_type =['dist','dist_by','hist_2d']        # dist, disby, variability, bivariate, hist2d

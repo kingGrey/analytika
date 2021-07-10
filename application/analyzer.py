@@ -130,6 +130,12 @@ class Analyzer(object):
                 dist_obj = Dist()
             elif plot_type.lower() == 'dist_by':
                 print('Processing for distby')
+                from dist_by import Dist_By
+                dist_obj = Dist_By()
+            elif plot_type.lower() == 'hist_2d':
+                print('Processings for Hist2D')
+                from hist_2d import Hist_2D
+                dist_obj = Hist_2D()
             elif plot_type.lower() == 'var':
                 print('Processing for variability')
 
@@ -163,7 +169,7 @@ class Analyzer(object):
                     <h1>Card {}</h1>
                     {}
                 </div>
-            '''.format(str(idx), self.results[dist_type].output_plots[idx])
+            '''.format(str(idx), self.results[dist_type].output_plots[0])
         template = '''
                 <!DOCTYPE html>
                 <html lang="en">
