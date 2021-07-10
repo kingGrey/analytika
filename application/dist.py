@@ -1,4 +1,5 @@
-from analytika.application.processor import *
+# from analytika.application.processor import *
+from processor import *
 from plotly.subplots import make_subplots
 from plotly.offline import plot
 import math
@@ -16,13 +17,15 @@ class Dist(PlotterBase):
         print(self.dFrame.shape)
         print(f'taskname: {self.task_name}')
         num_subplot_per_row = 3
-        cols = len(self.x_columns)
-        rows = math.ceil(cols / num_subplot_per_row)
+        cols = num_subplot_per_row #len(self.x_columns) if len(self.x_columns) < num_subplot_per_row else num_subplot_per_row
+        rows = math.ceil((len(self.x_columns) * len(self.y_columns)) / num_subplot_per_row) #math.ceil(cols / num_subplot_per_row)
         fig = make_subplots(rows=rows, cols=cols, print_grid=True,horizontal_spacing=0.15, shared_yaxes=True)
         cur_row = 1
         cur_col = 1
+        print('====Columns======',self.x_columns)
         for y_col_item in self.y_columns:
             for x_col_item in self.x_columns:
+                print('==================',x_col_item)
                 fig.append_trace(go.Histogram(x=self.dFrame[x_col_item], y=self.dFrame[y_col_item],name=x_col_item.upper()),row=cur_row,col=cur_col)
                 fig.update_xaxes(title_text=x_col_item.upper(), row=cur_row, col=cur_col)
                 fig.update_yaxes(title_text=y_col_item.upper(), row=cur_row, col=cur_col)
@@ -33,8 +36,8 @@ class Dist(PlotterBase):
         fig.update_layout(
             paper_bgcolor='black',
             plot_bgcolor='black',
-            height=500,
-            width=600,
+            height=400,
+            width=850,
             title_text='Dist',
             # title_font_size=14,
             legend_title="Legend Title",
@@ -45,5 +48,7 @@ class Dist(PlotterBase):
             )
         )
         # fig.show()
-        plot(fig)
+        # plot(fig)
+        div = plot(fig, auto_open=False, show_link=False, output_type='div')
+        self.generate_results(div, self.__class__.__name__)
 

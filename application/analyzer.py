@@ -5,12 +5,14 @@ __author__='acgreyjo'
 #
 ################################################################
 import os
+import sys
 import importlib
 import argparse
 import pandas as pd
 import io
 import requests
-from analytika.application.processor import *
+sys.path.append(r'../../application')
+from processor import *
 
 class Analyzer(object):
     def __init__(self, setup_config='', proxy=''):
@@ -28,6 +30,7 @@ class Analyzer(object):
         self.y_column = []
         self.dist_types = []
         self.input_validate()
+        self.results = {}
 
     def input_validate(self):
         '''
@@ -101,7 +104,7 @@ class Analyzer(object):
         _df['Gender'] = _df['Gender'].apply(lambda x: 'M' if x == 1 else 'F')
         self.dFrame = _df
         print('[-i-] DataFrame:\n', self.dFrame.head())
-        self.write_data(r'data\inputdata.csv')
+        # self.write_data(r'data\inputdata.csv')
 
     def write_data(self, file_path=''):
         '''
@@ -117,11 +120,13 @@ class Analyzer(object):
             process and plot base on distribution
         :return:
         '''
+
         for plot_type in self.dist_types:
             print(f'[-i-] Running Plot type: {plot_type}')
             if plot_type.lower() == 'dist':
                 print('Processing for dist.')
-                from analytika.application.dist import Dist
+                # from analytika.application.dist import Dist
+                from dist import Dist
                 dist_obj = Dist()
             elif plot_type.lower() == 'dist_by':
                 print('Processing for distby')
@@ -135,6 +140,52 @@ class Analyzer(object):
             dist_obj.groupby = self.groupby_column
             if dist_obj:
                 dist_obj.visualize()
+                self.results[plot_type] = dist_obj.results
+
+    def create_folder(self):
+        use_folder = os.path.join(os.getcwd(),'..','application','scheduledOutput',self.task_name)
+        print(use_folder)
+        if not os.path.exists(use_folder):
+            os.makedirs(use_folder)
+    # try:
+    #     # copy .css file over
+    #     output_file = os.path.join(self.output_file_path, 'modal.css')
+    #     copyfile('../application/modal.css', output_file)
+    # except:
+    #     print('Sorry modal.css failed to copy')
+
+    def generate_report(self):
+        tmp_str = ''
+        for idx,dist_type in enumerate(self.dist_types):
+            print(f'[-i-] Generate Report:{dist_type}')
+            tmp_str += '''
+                <div class="card_stack">
+                    <h1>Card {}</h1>
+                    {}
+                </div>
+            '''.format(str(idx), self.results[dist_type].output_plots[idx])
+        template = '''
+                <!DOCTYPE html>
+                <html lang="en">
+                    <head>
+                        <meta charset="UTF-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+                        <title></title>
+                        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+                        <link rel="stylesheet" href="../../../public/css/index.css" />
+                    </head>
+                    <body>
+                        <main>
+                            {}
+                        </main>
+                    </body>
+                </html>
+        '''.format(tmp_str)
+        # write out report
+        use_folder = os.path.join(os.getcwd(), '..', 'application', 'scheduledOutput', self.task_name,'report.html')
+        with open(use_folder,'w') as hdl:
+            hdl.write(template)
 
 
 def parse_options():
@@ -153,6 +204,8 @@ if __name__ == '__main__':
     config_file = options.setup
     use_proxy = options.proxy
     run_analyzer = Analyzer(setup_config=config_file, proxy=use_proxy)
+    run_analyzer.create_folder()
     run_analyzer.load_data()
     run_analyzer.process_data()
+    run_analyzer.generate_report()
     print('[-i-] Task Completed.')

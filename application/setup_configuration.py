@@ -5,7 +5,7 @@ url_to_data = 'http://jse.amstat.org/datasets/body.dat.txt'
 '''categorical column not to be processed'''
 ignore_columns = []
 '''x column'''
-x_column = ['Weight','Age']
+x_column = ['Weight','Height','Age']
 '''y column'''
 y_column = ['Biacromial diameter']
 '''column(s) names to group by'''
@@ -19,4 +19,4 @@ program_name = 'PGM1'
 '''seperabale column identification'''
 treatment_column = []
 '''disribution type'''
-dist_type = ['dist']        # dist, disby, variability,
+dist_type = ['dist','dist_by']        # dist, disby, variability,
