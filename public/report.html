@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Analytika-report</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script defer src="jscripts/report.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-treeview/1.2.0/bootstrap-treeview.min.js" type="text/javascript"></script>
+</head>
+  <body >
+    <main >
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarText">
+           <ul class="navbar-nav mr-auto">
+             <li class="nav-item active">
+               <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+             </li>
+           </ul>
+           <h4 class="text-white">Reports</h4>
+         </div>
+       </nav>
+       <div class="container-fluid vh-100">
+            <div id="one" class="row" style="height:100%">
+                <div id='nav' class="col-md-2" >
+                    <div class="" >
+                        <div class="form-group" >
+                          <label for="input-search" class="sr-only">Search Tree:</label>
+                          <input type="input" class="form-control" id="input-search" placeholder="Type to search..." value="">
+                        </div>
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" class="checkbox" id="chk-ignore-case" value="true">
+                            Ignore Case
+                          </label>
+                          <label>
+                            <input type="checkbox" class="checkbox" id="chk-exact-match" value="false">
+                            Exact Match
+                          </label>
+                        <button type="button" class="btn btn-success" id="btn-search">Search</button>
+                        <button type="button" class="btn btn-default" id="btn-clear-search">Clear</button>
+                        </div>
+                    </div>
+
+
+
+
+                    <div id="treeview1" class="treeview">
+                    </div>
+                </div>
+                <div class="col-md-10"  id="linker_content" >
+                </div>
+            </div>
+       </div>
+    </main>
+  </body>
+</html>

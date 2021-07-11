@@ -46,12 +46,12 @@ app.post('/adhoc_run_click', (req, res) => {
     // with arguments and send this data to res object
     child.stdout.on('data', function(data) {
         app_rslt_str += data.toString()
-        console.log('...data...',app_rslt_str)
+        console.log('=========================\n',app_rslt_str)
 //        res.send(data.toString());
     } )
     child.stdout.on('end', function(data){
         res.send(JSON.stringify(app_rslt_str))
-        console.log('done....sssssss')
+        console.log('=========================')
     })
     // Handle error output
     child.stderr.on('data', (data) => {

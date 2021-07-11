@@ -31,7 +31,6 @@ document.querySelector('#adhoc_config_input').addEventListener('change', event =
 
 run_button.addEventListener('click', (event) => {
   console.log('Run button was clicked');
-
   let options = {
       method: 'POST',
       headers: {
@@ -41,10 +40,14 @@ run_button.addEventListener('click', (event) => {
   }
   fetch('/adhoc_run_click',options)
     .then(response => response.json())
-    .then(data =>{ console.log(data)})
-//    .then(response => {
-//      console.log(`Response received: ${response.json()}`);
-//    })
+    .then(data =>{
+         console.log(data)
+        if(data.includes('Task Completed.')){
+            console.log('=======================')
+            console.log('FOUND TASK COMPLETED.')
+            console.log('=========================')
+        }
+    })
     .catch(function(error) {
       console.log(error);
     });
@@ -71,3 +74,5 @@ cncl_button.addEventListener('click', (event) => {
     });
   console.log(options)
 });
+
+
