@@ -35,8 +35,8 @@ class Dist(PlotterBase):
         fig.update_layout(
             paper_bgcolor='black',
             plot_bgcolor='black',
-            height=400,
-            width=850,
+            # height=400,
+            # width=850,
             title_text='Dist',
             # title_font_size=14,
             legend_title="Legend Title",
@@ -48,6 +48,6 @@ class Dist(PlotterBase):
         )
         # fig.show()
         # plot(fig)
-        div = plot(fig, auto_open=False, show_link=False, output_type='div')
+        div = plot(fig, auto_open=False, show_link=False, output_type='div',config={'responsive':True})
         self.generate_results(div, self.__class__.__name__)
 

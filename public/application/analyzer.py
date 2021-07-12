@@ -11,6 +11,7 @@ import argparse
 import pandas as pd
 import io
 import requests
+from datetime import datetime
 sys.path.append(r'../../application')
 from processor import *
 
@@ -148,19 +149,20 @@ class Analyzer(object):
                 dist_obj.visualize()
                 self.results[plot_type] = dist_obj.results
 
-    def create_folder(self):
-        use_folder = os.path.join(os.getcwd(),'..','application','scheduledOutput',self.task_name)
+    def create_folder(self, use_folder=''):
+        if not use_folder:
+            # create default task folders without datetime stamps
+            # use_folder = os.path.join(os.getcwd(),'..','application','scheduledOutput',self.task_name)
+            use_folder = os.path.join(os.getcwd(),'application','scheduledOutput',self.task_name)
         print(use_folder)
         if not os.path.exists(use_folder):
             os.makedirs(use_folder)
-    # try:
-    #     # copy .css file over
-    #     output_file = os.path.join(self.output_file_path, 'modal.css')
-    #     copyfile('../application/modal.css', output_file)
-    # except:
-    #     print('Sorry modal.css failed to copy')
 
     def generate_report(self):
+        # generate datetime and use as sub-folder
+        date = datetime.now()
+        cur_date = date.strftime("%Y-%m-%d_%H-%M-%S")
+
         tmp_str = ''
         for idx,dist_type in enumerate(self.dist_types):
             print(f'[-i-] Generate Report:{dist_type}')
@@ -179,7 +181,7 @@ class Analyzer(object):
                         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
                         <title></title>
                         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-                        <link rel="stylesheet" href="../../../public/css/index.css" />
+                        <link rel="stylesheet" href="../../../../css/index.css" />
                     </head>
                     <body>
                         <main>
@@ -189,8 +191,11 @@ class Analyzer(object):
                 </html>
         '''.format(tmp_str)
         # write out report
-        use_folder = os.path.join(os.getcwd(), '..', 'application', 'scheduledOutput', self.task_name,'report.html')
-        with open(use_folder,'w') as hdl:
+        # use_folder = os.path.join(os.getcwd(), '..', 'application', 'scheduledOutput', self.task_name, cur_date)
+        use_folder = os.path.join(os.getcwd(),'application', 'scheduledOutput', self.task_name, cur_date)
+        self.create_folder(use_folder=use_folder)
+        file_path = os.path.join(use_folder, 'report.html')
+        with open(file_path,'w') as hdl:
             hdl.write(template)
 
 

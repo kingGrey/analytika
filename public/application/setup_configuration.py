@@ -1,5 +1,5 @@
 '''unique identifier'''
-task_name = 'test_name'
+task_name = 'third_name'
 '''url data source'''
 url_to_data = 'http://jse.amstat.org/datasets/body.dat.txt'
 '''categorical column not to be processed'''
@@ -19,4 +19,4 @@ program_name = 'PGM1'
 '''seperabale column identification'''
 treatment_column = []
 '''disribution type'''
-dist_type =['dist','dist_by','hist_2d']        # dist, disby, variability, bivariate, hist2d
+dist_type =['dist_by']        # dist, dist_by, variability, bivariate, hist2d

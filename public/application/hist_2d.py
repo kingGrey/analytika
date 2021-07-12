@@ -7,10 +7,10 @@ import plotly.express as px
 import plotly.graph_objs as go
 
 
-class Dist_By(PlotterBase):
+class Hist_2D(PlotterBase):
     def __init__(self):
         print('[-i-] Processing {}...'.format(self.__class__.__name__))
-        super(Dist_By, self).__init__()
+        super(Hist_2D, self).__init__()
 
     def visualize(self):
         print('[-i-] Executing visualize...')
@@ -25,7 +25,7 @@ class Dist_By(PlotterBase):
         print('====Columns======',self.x_columns)
         for y_col_item in self.y_columns:
             for x_col_item in self.x_columns:
-                fig.append_trace(go.Histogram(x=self.dFrame[x_col_item], y=self.dFrame[y_col_item],name=x_col_item.upper()),row=cur_row,col=cur_col)
+                fig.append_trace(go.Histogram2d(x=self.dFrame[x_col_item], y=self.dFrame[y_col_item],name=x_col_item.upper()),row=cur_row,col=cur_col)
                 fig.update_xaxes(title_text=x_col_item.upper(), row=cur_row, col=cur_col)
                 fig.update_yaxes(title_text=y_col_item.upper(), row=cur_row, col=cur_col)
                 if cur_col == cols:
@@ -35,8 +35,8 @@ class Dist_By(PlotterBase):
         fig.update_layout(
             paper_bgcolor='black',
             plot_bgcolor='black',
-            height=400,
-            width=850,
+            # height=400,
+            # width=850,
             title_text='DistBy',
             # title_font_size=14,
             legend_title="Legend Title",
@@ -48,6 +48,6 @@ class Dist_By(PlotterBase):
         )
         # fig.show()
         # plot(fig)
-        div = plot(fig, auto_open=False, show_link=False, output_type='div')
+        div = plot(fig, auto_open=False, show_link=False, output_type='div',config={'responsive':True})
         self.generate_results(div, self.__class__.__name__)
 

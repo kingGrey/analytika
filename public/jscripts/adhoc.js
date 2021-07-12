@@ -1,4 +1,4 @@
-
+//get element handles
 let file_path = ''
 const cncl_button = document.querySelector('#adhoc_cncl_btn');
 const run_button = document.querySelector('#adhoc_run_btn');
@@ -29,14 +29,25 @@ document.querySelector('#adhoc_config_input').addEventListener('change', event =
   handleFileUpload(event)
 })
 
+// onclick event listener for ad-hoc run
 run_button.addEventListener('click', (event) => {
   console.log('Run button was clicked');
+  const cur_date = new Date()
+  console.log(cur_date)
+  log_date =  cur_date.getFullYear() +'-'
+  log_date+=  cur_date.getMonth().toString().padStart(2,'0') +'-'
+  log_date+=  cur_date.getDate().toString().padStart(2,'0') +'_'
+  log_date+=  cur_date.getHours().toString().padStart(2,'0') +'-'
+  log_date+=  cur_date.getMinutes().toString().padStart(2,'0') +'-'
+  log_date+=  cur_date.getSeconds().toString().padStart(2,'0')
+  console.log(log_date)
+
   let options = {
       method: 'POST',
       headers: {
           "Content-type": "application/json; charset=UTF-8"
       },
-      body: JSON.stringify({'path': file_path})
+      body: JSON.stringify({'path': file_path, 'folder_name': log_date, 'run_type':'adhoc'})
   }
   fetch('/adhoc_run_click',options)
     .then(response => response.json())
@@ -54,7 +65,7 @@ run_button.addEventListener('click', (event) => {
   console.log(options)
 });
 
-
+//cancel onClick button event - for ad-hoc
 cncl_button.addEventListener('click', (event) => {
   console.log('Cancel button was clicked');
 
