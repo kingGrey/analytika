@@ -74,7 +74,7 @@ app.post('/adhoc_cncl_click', (req, res) =>{
 app.post('/save_config', (req, res) => {
     console.log('Saving config...')
     const fileName = req.files.myFile.name
-    const path = 'c:/Temp/' + fileName //__dirname  + '/images/' + fileName
+    const path = 'c:/Temp/' + fileName 
     const config_file = req.files.myFile
     console.log('File Received:',fileName)
     console.log('Server path:',path)
@@ -97,9 +97,99 @@ app.post('/save_config', (req, res) => {
     })
 });
 
+app.post('/save_config_schedule', (req, res) => {
+    console.log('Saving config...')
+    let config_file = req.files.config_file
+    let fileName = config_file.name
+    let fld_name = req.body.folder_name
+    let path_ = path.join(__dirname, report_dir, fld_name, fileName)
+    let rel_path = path.join(report_dir,fld_name,fileName)
+    console.log('File Received:',fileName)
+    console.log('Server path:',path_)
+
+    config_file.mv(path_, (error) => {
+    if (error) {
+      console.error(error)
+      res.writeHead(500, {
+        'Content-Type': 'application/json'
+      })
+      res.end(JSON.stringify({ status: 'error', message: error }))
+      return
+    }
+    res.writeHead(200, {
+      'Content-Type': 'application/json'
+    })
+    res.end(JSON.stringify({ status: 'success', path: rel_path }))
+    })
+});
+
+
 /*##########################
         Scheduler
  ###########################*/
+app.post('/create_folder', (req, res) => {
+    fld_name = req.body.folder_name
+    folder_option = req.body.folder_option
+    console.log(`Create New Folder ${fld_name}`)
+    full_path = path.join(__dirname,report_dir, fld_name)
+    console.log(full_path)
+    console.log(req.body)
+    try {
+      if (folder_option == 'overwrite'){
+        fs.rmdirSync(full_path)
+      }
+      if (!fs.existsSync(full_path)) {
+        fs.mkdirSync(full_path)
+        res.send({'status':'success'})
+      }
+      else{
+        console.log('Folder Already Exists')
+        res.send({'status':'exists'})
+      }
+    } catch (err) {
+      console.error(err)
+      res.send({'status':err})
+    }
+});
+
+// creates file to hold shedule run times
+app.post('/create_interval_file',(req, res) => {
+    fld_name = req.body.folder_name
+    run_interval = req.body.task_interval
+    console.log(fld_name +':' + run_interval)
+    full_path = path.join(__dirname, report_dir, fld_name, 'run_interval.txt')
+    console.log(full_path)
+    try {
+      const data = fs.writeFileSync(full_path, run_interval.toString())
+      //file written successfully
+      console.log('Written Successfully')
+    } catch (err) {
+      console.error(err)
+    }
+})
+
+// writes <task-name>,<interval> to pending_schedule.txt
+app.post('/schedule_run_click', (req, res) => {
+    console.log('schedule run clicked..')
+    console.log(req.body)
+    full_path = path.join(__dirname,'../application/pending_schedule.txt')
+    content = req.body.folder_name+','+ req.body.interval + '\n'
+    if (fs.existsSync(full_path)){
+        console.log('Found')
+        fs.appendFileSync(full_path, content)
+    }
+    else{
+        console.log('Nope...')
+        try {
+          const data = fs.writeFileSync(full_path, content)
+          //file written successfully
+          console.log('Written Successfully')
+        } catch (err) {
+          console.error(err)
+        }
+    }
+})
+
 
 
 /*#########################

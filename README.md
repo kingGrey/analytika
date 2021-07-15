@@ -39,6 +39,10 @@ analyze.
 from analytika.application import ..
 
 ```
+## Requirements
+Tested with: 
+* `python37`
+* `nodejs`
 
 ## Acknowledgements
 
