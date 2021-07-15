@@ -10,11 +10,11 @@ a .py [python] module file. With this file and a provided data set, the applicat
  ##### Milestone 1..........     [1 day]
  - [ ] Front-end implementation
  - [x] Configuration file implementation
- - [ ] Handle data pull from source
+ - [x] Handle data pull from source
  ##### Milestone 2..........     [2 weeks]
  - [ ] Pre and Post-process of data based on user configuration file.
  ##### Milestone 3..........     [1.5 weeks]
- - [ ] Generate Report      
+ - [x] Generate Report      
  - [ ] Add report link to front-end application
 
 ## Future stages
