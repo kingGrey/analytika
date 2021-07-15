@@ -150,6 +150,12 @@ class Analyzer(object):
                 self.results[plot_type] = dist_obj.results
 
     def create_folder(self, use_folder=''):
+        '''
+            with current setting os.getcwd() should be equal to public
+            folder /analytika/public
+        :param use_folder:
+        :return:
+        '''
         if not use_folder:
             # create default task folders without datetime stamps
             # use_folder = os.path.join(os.getcwd(),'..','application','scheduledOutput',self.task_name)

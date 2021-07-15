@@ -1,5 +1,5 @@
 '''unique identifier'''
-task_name = 'third_name'
+task_name = 'test'
 '''url data source'''
 url_to_data = 'http://jse.amstat.org/datasets/body.dat.txt'
 '''categorical column not to be processed'''

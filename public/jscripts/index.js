@@ -74,7 +74,7 @@ app.post('/adhoc_cncl_click', (req, res) =>{
 app.post('/save_config', (req, res) => {
     console.log('Saving config...')
     const fileName = req.files.myFile.name
-    const path = 'c:/Temp/' + fileName 
+    const path = 'c:/Temp/' + fileName
     const config_file = req.files.myFile
     console.log('File Received:',fileName)
     console.log('Server path:',path)
@@ -217,26 +217,28 @@ app.get('/report_details',(req, res) =>{
             var full_path = path.join(child_fld,file)        //get full path to folder
             console.log('fullpath:',full_path)
             if(fs.statSync(full_path).isDirectory()){
-                // only for directories
-                var child_dict = {}
-                console.log('child files: '+file);
-                child_dict['text'] = file.toString()
-                child_dict['icon'] = "glyphicon glyphicon-stop"
-                child_dict['selectedIcon'] = "glyphicon glyphicon-stop"
-    //          child_dict['href'] = '#href'
-                child_dict['nodes'] = []
-                lcl_dict['nodes'].push(child_dict)      // store child nodes
+                // only for directories, skip __pycache__ generated
+                if('__pycache__' != file){
+                    var child_dict = {}
+                    console.log('child files: '+file);
+                    child_dict['text'] = file.toString()
+                    child_dict['icon'] = "glyphicon glyphicon-stop"
+                    child_dict['selectedIcon'] = "glyphicon glyphicon-stop"
+        //          child_dict['href'] = '#href'
+                    child_dict['nodes'] = []
+                    lcl_dict['nodes'].push(child_dict)      // store child nodes
 
-                var grand_child = child_fld + '//'+ file
-                var grand_child_dict = {}
-                let dirCont = fs.readdirSync( grand_child );
-                var extension = 'html'
-                //search for .html file
-                let linker = dirCont.filter( file => file.match(new RegExp(`.*\.(${extension})`, 'ig')));
-                linker_name = linker[0]
-                grand_child_dict['text'] = linker_name
-                grand_child_dict['href'] = path.join('application','scheduledOutput',fld, file, linker_name)
-                child_dict['nodes'].push(grand_child_dict)      //store grand-child
+                    var grand_child = child_fld + '//'+ file
+                    var grand_child_dict = {}
+                    let dirCont = fs.readdirSync( grand_child );
+                    var extension = 'html'
+                    //search for .html file
+                    let linker = dirCont.filter( file => file.match(new RegExp(`.*\.(${extension})`, 'ig')));
+                    linker_name = linker[0]
+                    grand_child_dict['text'] = linker_name
+                    grand_child_dict['href'] = path.join('application','scheduledOutput',fld, file, linker_name)
+                    child_dict['nodes'].push(grand_child_dict)      //store grand-child
+                }
             }
         });
         defaultData.push(lcl_dict)
