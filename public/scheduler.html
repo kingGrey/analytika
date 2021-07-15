@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Analytika</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+    <script defer src="jscripts/scheduler.js"></script>
+  </head>
+  <body >
+    <main >
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarText">
+           <ul class="navbar-nav mr-auto">
+             <li class="nav-item active">
+               <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+             </li>
+           </ul>
+           <h4 class="text-white">Scheduler</h4>
+         </div>
+       </nav>
+       <div class="card" >
+            <div class="form-group">
+                <label for="name">Task-Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter task-name" required>
+            </div>
+            <!-- <div class="input-group">
+                <span class="input-group-addon">Task-Name  </span>
+                <input id="msg" type="text" class="form-control" name="msg" placeholder="Enter task-name">
+            </div> -->
+            <div class="form-group">
+                <label for="name">Trigger Interval:</label>
+                <input type="datetime-local" class="form-control" id="trig_interval" placeholder="Select Interval" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="schedular_config_input">Configuration:</label>
+                <input type="file" class="form-control" id="schedular_config_input" placeholder="Configuration..." required>
+            </div>
+            <br>
+
+            <button id="schdl_btn" type="button" class='btn btn-primary btn-lg btn-block'>Schedule</button><br>
+            <button id="schdl_rem_btn" type="button" class="btn btn-secondary btn-lg btn-block">Remove</button>
+        </div>
+
+    </main>
+  </body>
+</html>
