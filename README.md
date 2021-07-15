@@ -1,25 +1,27 @@
 # analytika - analyze input data and display data summeries
-Asante Grey-Johnson 2021
+`Asante Grey-Johnson 2021`
 
 This repository contains a program that takes user configuration in the format of
-a .py [python] module file. With this file and a provided data set, the application then performs an ad-hoc run to summerizes and present some general plot types that best explains or gives the user more insights into the data being analyzed. 
+a `.py [python]` module file. With this file and a provided data set, the application then performs an ad-hoc run to summerizes and present some general plot types that best explains or gives the user more insights into the data being analyzed. 
 
 
  ## Roadmap stages
  This section shows the various phase items that is/are being worked on towards the completion of the project
- ##### Milestone 1..........     [1 day]
+ ##### Milestone 1..........     `[1 day]`
  - [x] Front-end implementation
  - [x] Configuration file implementation
  - [x] Handle data pull from source
- ##### Milestone 2..........     [2 weeks]
- - [ ] Pre and Post-process of data based on user configuration file.
- ##### Milestone 3..........     [1.5 weeks]
- - [x] Generate Report      
+ ##### Milestone 2..........     `[2.5 weeks]`
+ - [x] Pre-processing and 
+ - [ ] Post-process of data based on user configuration file.
+ ##### Milestone 3..........     `[1.5 weeks]`
+ - [x] Add ad-hoc option
+ - [x] Add scheduling option
+ - [x] Generate reports      
  - [x] Add report link to front-end application
 
 ## Future stages
 I expect that for future work, additional features could be added to enable the application to run fully automated
-- [ ] Add scheduling option
 - [ ] Add user login options
 - [ ] Add a fully functional database to store metadata for additional analysis
 - [ ] Add time series plots to detect process shifts
@@ -63,6 +65,7 @@ dist_type = ['dist_by']        # dist, dist_by, variability, bivariate, hist2d
 Tested with: 
 * `python37`
 * `nodejs`
+* currently on `Windows platform`
 
 ## Acknowledgements
 
