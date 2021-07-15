@@ -8,14 +8,14 @@ a .py [python] module file. With this file and a provided data set, the applicat
  ## Roadmap stages
  This section shows the various phase items that is/are being worked on towards the completion of the project
  ##### Milestone 1..........     [1 day]
- - [ ] Front-end implementation
+ - [x] Front-end implementation
  - [x] Configuration file implementation
  - [x] Handle data pull from source
  ##### Milestone 2..........     [2 weeks]
  - [ ] Pre and Post-process of data based on user configuration file.
  ##### Milestone 3..........     [1.5 weeks]
  - [x] Generate Report      
- - [ ] Add report link to front-end application
+ - [x] Add report link to front-end application
 
 ## Future stages
 I expect that for future work, additional features could be added to enable the application to run fully automated
