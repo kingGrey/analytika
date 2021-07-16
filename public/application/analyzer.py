@@ -127,15 +127,15 @@ class Analyzer(object):
             if plot_type.lower() == 'dist':
                 print('Processing for dist.')
                 # from analytika.application.dist import Dist
-                from dist import Dist
+                from analyze.dist import Dist
                 dist_obj = Dist()
             elif plot_type.lower() == 'dist_by':
                 print('Processing for distby')
-                from dist_by import Dist_By
+                from analyze.dist_by import Dist_By
                 dist_obj = Dist_By()
             elif plot_type.lower() == 'hist_2d':
                 print('Processings for Hist2D')
-                from hist_2d import Hist_2D
+                from analyze.hist_2d import Hist_2D
                 dist_obj = Hist_2D()
             elif plot_type.lower() == 'var':
                 print('Processing for variability')
