@@ -1,4 +1,5 @@
-# analytika - analyze input data and display data summeries
+# `Analytika`  
+#### analyze input data and display data summeries
 `Asante Grey-Johnson 2021`
 
 This repository contains a program that takes user configuration in the format of
@@ -7,7 +8,7 @@ a `.py [python]` module file. With this file and a provided data set, the applic
 
  ## Roadmap stages
  This section shows the various phase items that is/are being worked on towards the completion of the project
- ##### Milestone 1..........     `[1 day]`
+ ##### Milestone 1..........     `[4 days]`
  - [x] Front-end implementation
  - [x] Configuration file implementation
  - [x] Handle data pull from source
@@ -29,9 +30,14 @@ I expect that for future work, additional features could be added to enable the 
 - [ ] Add capability for mean data analysis
 
 ## Build and Run
-1. on command line cd into project path `c:\<...>\analytika\public`
-2. launch: `node|nodemon jscripts\index.js`
-3. From a browser launch application at `http://localhost:5000`
+
+#####  Scheduling
+To enable scheduling - this is currently a standalone file run in the background that monitors `pending_schedule.txt` and `cancel_schedule.txt` once a task(s) have been scheduled from the main application
+1. On a command line: start  `python` `scheduler.py`
+##### Main run  
+2. On another command line: `change directory` into project path `c:\<...>\analytika\public`
+3. Launch: `node|nodemon jscripts\index.js`
+4. From a browser launch application at `http://localhost:5000`
 
 ## Example
 This configuration file contains the main settings the users would like the program to
