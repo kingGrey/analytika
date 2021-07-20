@@ -30,7 +30,7 @@ I expect that for future work, additional features could be added to enable the 
 - [ ] Add capability for mean data analysis
 
 ## Build and Run
-
+* `pip install -r requirements.txt`
 #####  Scheduling
 To enable scheduling - this is currently a standalone file run in the background that monitors `pending_schedule.txt` and `cancel_schedule.txt` once a task(s) have been scheduled from the main application
 1. On a command line: start  `python` `scheduler.py`

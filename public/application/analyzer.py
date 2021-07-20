@@ -137,6 +137,9 @@ class Analyzer(object):
                 print('Processings for Hist2D')
                 from analyze.hist_2d import Hist_2D
                 dist_obj = Hist_2D()
+            elif plot_type.lower() == 'box':
+                from analyze.box import Box
+                dist_obj = Box()
             elif plot_type.lower() == 'var':
                 print('Processing for variability')
 
