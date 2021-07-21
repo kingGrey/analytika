@@ -103,7 +103,8 @@ document.querySelector('#schedular_config_input').addEventListener('change', eve
 const button = document.querySelector('#schdl_btn');
 button.addEventListener('click', (event) => {
   console.log('**Run button was clicked');
-    let options = {
+  button.disabled =true;
+  let options = {
       method: 'POST',
       headers: {
           "Content-type": "application/json; charset=UTF-8"
@@ -113,6 +114,7 @@ button.addEventListener('click', (event) => {
   fetch('/schedule_run_click',options)
     .then(response => {
       console.log(response);
+      button.disabled=false           //re-enable button
     })
     .catch(function(error) {
       console.log(error);

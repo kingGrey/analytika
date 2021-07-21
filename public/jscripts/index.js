@@ -188,6 +188,7 @@ app.post('/schedule_run_click', (req, res) => {
           console.error(err)
         }
     }
+    res.send(JSON.stringify('added'))
 })
 
 
