@@ -1,5 +1,5 @@
 # `Analytika`  
-#### analyze input data and display data summeries
+#### analyze input data and display data summaries
 `Asante Grey-Johnson 2021`
 
 This repository contains a program that takes user configuration in the format of
@@ -15,14 +15,17 @@ a `.py [python]` module file. With this file and a provided data set, the applic
  ##### Milestone 2..........     `[2.5 weeks]`
  - [x] Pre-processing and 
  - [ ] Post-process of data based on user configuration file.
- ##### Milestone 3..........     `[1.5 weeks]`
+ ##### Milestone 3..........     `[2.5 weeks]`
  - [x] Add ad-hoc option
  - [x] Add scheduling option
  - [x] Generate reports      
  - [x] Add report link to front-end application
+ - [x] Add Documentation
+ - [ ] Testing
+ 
 
 ## Future stages
-I expect that for future work, additional features could be added to enable the application to run fully automated
+I expect that for future work, additional features that could be added are:
 - [ ] Add user login options
 - [ ] Add a fully functional database to store metadata for additional analysis
 - [ ] Add time series plots to detect process shifts
@@ -46,26 +49,36 @@ analyze.
 ```python
 '''unique identifier'''
 task_name = 'task-name'
+
 '''url data source'''
 url_to_data = 'http://jse.amstat.org/datasets/body.dat.txt'
+
 '''categorical column not to be processed'''
 ignore_columns = []
+
 '''x column'''
 x_column = ['Weight','Height','Age']
+
 '''y column'''
 y_column = ['Biacromial diameter']
+
 '''column(s) names to group by'''
 column_groupby = ['Gender']
+
 '''result output path'''
 output_file_path = r'c:\Temp'
+
 '''filestore name'''
 hdf5_file_name = 'mean_analysis_store'
+
 '''id name'''
 program_name = 'PGM1'
+
 '''seperabale column identification'''
 treatment_column = []
+
 '''disribution type'''
-dist_type = ['dist_by']        # dist, dist_by, variability, bivariate, hist2d
+dist_type = ['dist_by']        # dist, dist_by, variability, bivariate, hist2d, box
 ```
 ## Requirements
 Tested with: 
@@ -74,7 +87,7 @@ Tested with:
 * currently on `Windows platform`
 
 ## Acknowledgements
-
+ 
 
 ## License
 

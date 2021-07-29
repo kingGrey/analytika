@@ -1,7 +1,9 @@
 ################################################################
 __author__='acgreyjo'
 #
-#
+# The file handles and controls the post processing of the user
+# data and parsing the user configuration in order to determine
+# the type of analysis to perform.
 #
 ################################################################
 import os
@@ -14,6 +16,7 @@ import requests
 from datetime import datetime
 sys.path.append(r'../../application')
 from processor import *
+
 
 class Analyzer(object):
     def __init__(self, setup_config='', proxy=''):
@@ -161,7 +164,6 @@ class Analyzer(object):
         '''
         if not use_folder:
             # create default task folders without datetime stamps
-            # use_folder = os.path.join(os.getcwd(),'..','application','scheduledOutput',self.task_name)
             use_folder = os.path.join(os.getcwd(),'application','scheduledOutput',self.task_name)
         print(use_folder)
         if not os.path.exists(use_folder):
@@ -218,6 +220,7 @@ def parse_options():
     return args
 
 
+# entry point
 if __name__ == '__main__':
     print('[-i-] Analyzer Starting...')
     options = parse_options()

@@ -1,4 +1,9 @@
-# from analytika.application.processor import *
+##############################################
+__author__='acgreyjo'
+#
+#   This implementation generate a box-plot(s)
+#   based on data provided
+##############################################
 from processor import *
 from plotly.subplots import make_subplots
 from plotly.offline import plot
@@ -62,8 +67,6 @@ class Box(PlotterBase):
         fig.update_layout(
             paper_bgcolor='black',
             plot_bgcolor='black',
-            # height=400,
-            # width=850,
             title_text='Box',
             # title_font_size=14,
             legend_title="Legend Title",
@@ -73,7 +76,6 @@ class Box(PlotterBase):
                 color="yellow"
             )
         )
-        # fig.show()
         # plot(fig)
         div = plot(fig, auto_open=False, show_link=False, output_type='div',config={'responsive':True})
         self.generate_results(div, self.__class__.__name__)

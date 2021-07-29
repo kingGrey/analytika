@@ -1,9 +1,11 @@
 #####################################################################################
 __author__='acgreyjo'
 #
-#  1. File is a stand alone file that
-#     will read file for any new items
-#  2. will
+#  This file handles setting up and running task schedules.
+#  Task(s) requesting add to schedule are store in pending_schedule.txt file
+#  Task(s) requesting cancel/stop to schedule are stored in cancel_schedule.txt file
+#
+# Scheduling documentation can be found here:
 # Documentation: https://schedule.readthedocs.io/en/stable/examples.html#cancel-a-job
 #####################################################################################
 import subprocess
@@ -11,21 +13,12 @@ import schedule
 import time
 import six
 import os
-#
-# def create_a_function(*args, **kwargs):
-#
-#     def function_template(*args, **kwargs):
-#         pass
-#
-#     return function_template
-#
-# my_new_function = create_a_function()
 
 scheduler_controller_pending = r'application/pending_schedule.txt'
 scheduler_controller_canceling = 'application/cancel_schedule.txt'
 
 
-class Controller():
+class Controller(object):
 
     def __init__(self):
         self.jobs_running = {}      # holds all jobs actively running
@@ -113,6 +106,7 @@ def process(ctrl_schedule):
 
 
 if __name__ == '__main__':
+    '''Initiate Schedule Controller'''
     ctrl_obj = Controller()
     while True:
         schedule.run_pending()
@@ -120,5 +114,5 @@ if __name__ == '__main__':
         try:
             process(ctrl_obj)
         except:
-           print('Error With Scheduler')
+           print('Error With Scheduler -- change start directory')
         time.sleep(1)

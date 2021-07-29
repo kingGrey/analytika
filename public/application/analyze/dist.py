@@ -1,4 +1,10 @@
-# from analytika.application.processor import *
+##############################################
+__author__='acgreyjo'
+#
+#   This implementation generate a distribution
+#   plot(s) based on data provided
+##############################################
+
 from processor import *
 from plotly.subplots import make_subplots
 from plotly.offline import plot
