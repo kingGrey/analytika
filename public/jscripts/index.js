@@ -27,22 +27,25 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'../index.html'))
 });
 
-/*#########################
-           AD_HOC
- ##########################*/
+        /*#########################
+                   AD_HOC
+         ##########################*/
 
+/**************************************
+*  handles adhoc button click action
+*  transfer from client side to execute
+*  analysis on data
+* @return - None
+***************************************/
 app.post('/adhoc_run_click', (req, res) => {
     console.log('Ad-Hoc Run clicked...');
     console.log(req.body.path);             // configuration path
     console.log(req.body.folder_name)       //date_time name
 
-    // Use child_process.spawn method from
-    // child_process module and assign it
-    // to variable spawn
+    //uses child_process.spawn of subprocess
     var spawn = require("child_process").spawn;
     var child = spawn('C:\\Python37\\python.exe',['application/analyzer.py','-setup',`${req.body.path}`]);
     app_rslt_str = ''
-//    process.stdout.pipe(child.stdout)
 
     // Takes stdout data from script which executed
     // with arguments and send this data to res object
@@ -66,11 +69,20 @@ app.post('/adhoc_run_click', (req, res) => {
     });
 });
 
+/****************************************
+* handles cancel button click
+* @return -
+*****************************************/
 app.post('/adhoc_cncl_click', (req, res) =>{
     console.log('Ad-Hoc Cancel run...')
     console.log(req.body.path)
 })
 
+/****************************************
+* handles adhoc configuration upload to
+* be save on server
+* @return -
+*****************************************/
 app.post('/save_config', (req, res) => {
     console.log('Saving config...')
     const fileName = req.files.myFile.name
@@ -97,6 +109,11 @@ app.post('/save_config', (req, res) => {
     })
 });
 
+/************************************************
+* handles configuraiton storage for scheduler
+* from client to server
+* @return -
+**************************************************/
 app.post('/save_config_schedule', (req, res) => {
     console.log('Saving config...')
     let config_file = req.files.config_file
@@ -124,9 +141,15 @@ app.post('/save_config_schedule', (req, res) => {
 });
 
 
-/*##########################
-        Scheduler
- ###########################*/
+        /*##########################
+                Scheduler
+         ###########################*/
+
+/******************************************
+* helper function to enable file creation
+* on the server
+* @return - Status of creation
+*******************************************/
 app.post('/create_folder', (req, res) => {
     fld_name = req.body.folder_name
     folder_option = req.body.folder_option
@@ -152,7 +175,12 @@ app.post('/create_folder', (req, res) => {
     }
 });
 
-// creates file to hold shedule run times
+/***********************************************
+* creates file to hold schedule run times and
+* this is stored local file - run_interval.txt
+* to be use for reload incase full system stopage
+* @return - None
+************************************************/
 app.post('/create_interval_file',(req, res) => {
     fld_name = req.body.folder_name
     run_interval = req.body.task_interval
@@ -161,25 +189,28 @@ app.post('/create_interval_file',(req, res) => {
     console.log(full_path)
     try {
       const data = fs.writeFileSync(full_path, run_interval.toString())
-      //file written successfully
       console.log('Written Successfully')
     } catch (err) {
       console.error(err)
     }
 })
 
-// writes <task-name>,<interval> to pending_schedule.txt
+/************************************************
+* handles writing <task-name>,<interval>  into
+* pending_schedule.txt to be added to scheduler
+* @return - Notification of addition
+************************************************/
 app.post('/schedule_run_click', (req, res) => {
     console.log('schedule run clicked..')
     console.log(req.body)
     full_path = path.join(__dirname,'../application/pending_schedule.txt')
     content = req.body.folder_name+','+ req.body.interval + '\n'
     if (fs.existsSync(full_path)){
-        console.log('Found')
+        console.log('file exists, append.')
         fs.appendFileSync(full_path, content)
     }
     else{
-        console.log('Nope...')
+        console.log('file not found. Create it.')
         try {
           const data = fs.writeFileSync(full_path, content)
           //file written successfully
@@ -188,13 +219,20 @@ app.post('/schedule_run_click', (req, res) => {
           console.error(err)
         }
     }
+    res.send(JSON.stringify('added'))
 })
 
 
+        /*#########################
+                   REPORT
+         ###########################*/
 
-/*#########################
-           REPORT
- ###########################*/
+/********************************************
+* handles generation of side bar treeview to
+* display all task reports generated by either
+* adhoc or scheduled process.
+* @return - None
+*********************************************/
 app.get('/report_details',(req, res) =>{
     console.log('Information log...')
 
@@ -217,14 +255,14 @@ app.get('/report_details',(req, res) =>{
             var full_path = path.join(child_fld,file)        //get full path to folder
             console.log('fullpath:',full_path)
             if(fs.statSync(full_path).isDirectory()){
-                // only for directories, skip __pycache__ generated
+                // only for directories, skip __pycache__ folder generated
                 if('__pycache__' != file){
                     var child_dict = {}
                     console.log('child files: '+file);
                     child_dict['text'] = file.toString()
                     child_dict['icon'] = "glyphicon glyphicon-stop"
                     child_dict['selectedIcon'] = "glyphicon glyphicon-stop"
-        //          child_dict['href'] = '#href'
+                    //child_dict['href'] = '#href'
                     child_dict['nodes'] = []
                     lcl_dict['nodes'].push(child_dict)      // store child nodes
 

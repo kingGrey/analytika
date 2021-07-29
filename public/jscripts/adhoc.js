@@ -1,10 +1,15 @@
-//get element handles
+/******************************************
+// general declarations get element handles
+*******************************************/
 let file_path = ''
 const cncl_button = document.querySelector('#adhoc_cncl_btn');
 const run_button = document.querySelector('#adhoc_run_btn');
 
-//handles file upload from user
-//and file stored locally on machine
+/*****************************************
+* handles file upload from user
+* and file stored locally on machine
+* @return - None
+*******************************************/
 const handleFileUpload = event => {
   const files = event.target.files
   const formData = new FormData()
@@ -24,23 +29,23 @@ const handleFileUpload = event => {
   })
 }
 
-// on configuration file change post and save to server
+/*********************************************
+* on configuration file change post and save
+*  to configuration files onto server
+*  @return - None
+**********************************************/
 document.querySelector('#adhoc_config_input').addEventListener('change', event => {
   handleFileUpload(event)
 })
 
-// onclick event listener for ad-hoc run
+/*********************************************
+* onclick event listener for ad-hoc run
+* @return - None
+**********************************************/
 run_button.addEventListener('click', (event) => {
   console.log('Run button was clicked');
-//  const cur_date = new Date()
-//  console.log(cur_date)
-//  log_date =  cur_date.getFullYear() +'-'
-//  log_date+=  cur_date.getMonth().toString().padStart(2,'0') +'-'
-//  log_date+=  cur_date.getDate().toString().padStart(2,'0') +'_'
-//  log_date+=  cur_date.getHours().toString().padStart(2,'0') +'-'
-//  log_date+=  cur_date.getMinutes().toString().padStart(2,'0') +'-'
-//  log_date+=  cur_date.getSeconds().toString().padStart(2,'0')
-//  console.log(log_date)
+  run_button.disabled = true;       //disable button
+
   let log_date = ''
   let options = {
       method: 'POST',
@@ -57,7 +62,9 @@ run_button.addEventListener('click', (event) => {
             console.log('=======================')
             console.log('FOUND TASK COMPLETED.')
             console.log('=========================')
+            alert(' == Run Completed. == ')
         }
+        run_button.disabled=false           //re-enable button
     })
     .catch(function(error) {
       console.log(error);
@@ -65,7 +72,10 @@ run_button.addEventListener('click', (event) => {
   console.log(options)
 });
 
-//cancel onClick button event - for ad-hoc
+/**********************************************
+* cancel onClick button event - for ad-hoc
+* @return None
+************************************************/
 cncl_button.addEventListener('click', (event) => {
   console.log('Cancel button was clicked');
 

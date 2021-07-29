@@ -1,9 +1,15 @@
+//element declarations
 var date_control = document.querySelector('input[type="datetime-local"]');
 var task_name = document.querySelector('#name')
 var typing_timer;
-var typing_complete_interval = 1000;            //2 sec
+var typing_complete_interval = 1000;            //1 sec
 
-//create  output folder on keyup action
+/*****************************************
+* handles detection of the keyup action on
+* scheduled page for task-name creation on
+* the server side.
+* @return - None
+******************************************/
 task_name.addEventListener('keyup', () =>{
     clearTimeout(typing_timer);
     if (task_name.value){
@@ -11,7 +17,12 @@ task_name.addEventListener('keyup', () =>{
     }
 
 })
-//create task-name if does not exists
+
+/***********************************************
+* handles creation task-name if does not exists
+* else can overwrite file if user decides so
+* @return - confirmation
+***********************************************/
 function validate_task_name(){
 //  alert(task_name.value)
   const formData = new FormData()
@@ -43,7 +54,13 @@ function validate_task_name(){
     console.error(error)
   })
 }
-//handles datetime interval settings
+
+/************************************************
+* handles datetime interval settings - to be used
+* to schedule run times for the assigned task on
+* server
+* @return - None
+*************************************************/
 date_control.addEventListener('change', event => {
   console.log('DateTime_Control...')
   task_name = document.getElementById('name').value
@@ -70,9 +87,12 @@ date_control.addEventListener('change', event => {
     }
 })
 
-//configuration upload - file to server location
+/************************************************
+* handles configuration upload onto the server
+* based on user selection - file to server location
+* @return - None
+*************************************************/
 let file_path = ''
-
 const handleFileUpload = event => {
   const files = event.target.files
   const formData = new FormData()
@@ -86,7 +106,6 @@ const handleFileUpload = event => {
   })
   .then(response => response.json())
   .then(data => {
-//      console.log(data)
     file_path = data.path
     console.log(file_path)
   })
@@ -94,16 +113,27 @@ const handleFileUpload = event => {
     console.error(error)
   })
 }
-// on configuration file change post and save to server
+
+/***************************************************
+* handles and detects user configuration file change
+* event - used to post and save config on server
+* @return - None
+****************************************************/
 document.querySelector('#schedular_config_input').addEventListener('change', event => {
     handleFileUpload(event)
 })
 
-
+/**************************************************
+* handles schedule button click -  add
+* new task to be schedule for run at user selected
+* time
+* @return - Status when task is added
+****************************************************/
 const button = document.querySelector('#schdl_btn');
 button.addEventListener('click', (event) => {
   console.log('**Run button was clicked');
-    let options = {
+  button.disabled =true;
+  let options = {
       method: 'POST',
       headers: {
           "Content-type": "application/json; charset=UTF-8"
@@ -113,6 +143,8 @@ button.addEventListener('click', (event) => {
   fetch('/schedule_run_click',options)
     .then(response => {
       console.log(response);
+      button.disabled=false           //re-enable button
+      alert(' == Task Added == ')
     })
     .catch(function(error) {
       console.log(error);

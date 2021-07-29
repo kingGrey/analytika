@@ -1,7 +1,9 @@
 ################################################################
 __author__='acgreyjo'
 #
-#
+# The file handles and controls the post processing of the user
+# data and parsing the user configuration in order to determine
+# the type of analysis to perform.
 #
 ################################################################
 import os
@@ -14,6 +16,7 @@ import requests
 from datetime import datetime
 sys.path.append(r'../../application')
 from processor import *
+
 
 class Analyzer(object):
     def __init__(self, setup_config='', proxy=''):
@@ -127,16 +130,19 @@ class Analyzer(object):
             if plot_type.lower() == 'dist':
                 print('Processing for dist.')
                 # from analytika.application.dist import Dist
-                from dist import Dist
+                from analyze.dist import Dist
                 dist_obj = Dist()
             elif plot_type.lower() == 'dist_by':
                 print('Processing for distby')
-                from dist_by import Dist_By
+                from analyze.dist_by import Dist_By
                 dist_obj = Dist_By()
             elif plot_type.lower() == 'hist_2d':
                 print('Processings for Hist2D')
-                from hist_2d import Hist_2D
+                from analyze.hist_2d import Hist_2D
                 dist_obj = Hist_2D()
+            elif plot_type.lower() == 'box':
+                from analyze.box import Box
+                dist_obj = Box()
             elif plot_type.lower() == 'var':
                 print('Processing for variability')
 
@@ -158,7 +164,6 @@ class Analyzer(object):
         '''
         if not use_folder:
             # create default task folders without datetime stamps
-            # use_folder = os.path.join(os.getcwd(),'..','application','scheduledOutput',self.task_name)
             use_folder = os.path.join(os.getcwd(),'application','scheduledOutput',self.task_name)
         print(use_folder)
         if not os.path.exists(use_folder):
@@ -215,6 +220,7 @@ def parse_options():
     return args
 
 
+# entry point
 if __name__ == '__main__':
     print('[-i-] Analyzer Starting...')
     options = parse_options()
