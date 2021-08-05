@@ -12,7 +12,7 @@
 ###########################################################################
 
 '''unique identifier'''
-task_name = 'sched07'
+task_name = 'unittest'
 
 '''url data source'''
 url_to_data = 'http://jse.amstat.org/datasets/body.dat.txt'
@@ -42,4 +42,4 @@ program_name = 'PGM1'
 treatment_column = []
 
 '''disribution type'''
-dist_type =['box','dist','hist_2d']        # dist, dist_by, variability, bivariate, hist_2d, box
+dist_type =['box','dist','dist_by']        # dist, dist_by, variability, bivariate, hist2d, box
