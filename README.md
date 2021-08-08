@@ -21,7 +21,7 @@ a `.py [python]` module file. With this file and a provided data set, the applic
  - [x] Generate reports      
  - [x] Add report link to front-end application
  - [x] Add Documentation
- - [ ] Testing
+ - [x] Testing
  
 
 ## Future stages
@@ -87,7 +87,7 @@ Tested with:
 * currently on `Windows platform`
 
 ## Acknowledgements
- 
+ Thanks to `Bart Massey` for the useful information provided in making this class project a success.
 
 ## License
 
