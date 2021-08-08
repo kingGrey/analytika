@@ -14,14 +14,14 @@ a `.py [python]` module file. With this file and a provided data set, the applic
  - [x] Handle data pull from source
  ##### Milestone 2..........     `[2.5 weeks]`
  - [x] Pre-processing and 
- - [ ] Post-process of data based on user configuration file.
+ - [x] Post-process of data based on user configuration file.
  ##### Milestone 3..........     `[2.5 weeks]`
  - [x] Add ad-hoc option
  - [x] Add scheduling option
  - [x] Generate reports      
  - [x] Add report link to front-end application
  - [x] Add Documentation
- - [ ] Testing
+ - [x] Testing
  
 
 ## Future stages
@@ -78,7 +78,7 @@ program_name = 'PGM1'
 treatment_column = []
 
 '''disribution type'''
-dist_type = ['dist_by']        # dist, dist_by, variability, bivariate, hist2d, box
+dist_type = ['dist_by','hist_2d']        # dist, dist_by, variability, bivariate, hist_2d, box
 ```
 ## Requirements
 Tested with: 
@@ -87,7 +87,7 @@ Tested with:
 * currently on `Windows platform`
 
 ## Acknowledgements
- 
+ Thanks to `Bart Massey` for the useful information provided in making this class project a success.
 
 ## License
 

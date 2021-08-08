@@ -8,6 +8,7 @@ const io = require('socket.io')(http);
 const app = express();
 const port = process.env.PORT || 5000;
 const report_dir = '../application/ScheduledOutput'
+const scheduler_controller_pending = '../application/monitor/pending_schedule.txt'
 const host_name = `http://localhost:${port}`
 
 //configure express
@@ -203,7 +204,7 @@ app.post('/create_interval_file',(req, res) => {
 app.post('/schedule_run_click', (req, res) => {
     console.log('schedule run clicked..')
     console.log(req.body)
-    full_path = path.join(__dirname,'../application/pending_schedule.txt')
+    full_path = path.join(__dirname, scheduler_controller_pending)
     content = req.body.folder_name+','+ req.body.interval + '\n'
     if (fs.existsSync(full_path)){
         console.log('file exists, append.')

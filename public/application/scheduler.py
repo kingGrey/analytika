@@ -14,8 +14,8 @@ import time
 import six
 import os
 
-scheduler_controller_pending = r'application/pending_schedule.txt'
-scheduler_controller_canceling = 'application/cancel_schedule.txt'
+scheduler_controller_pending = r'application/monitor/pending_schedule.txt'
+scheduler_controller_canceling = 'application/monitor/cancel_schedule.txt'
 
 
 class Controller(object):
