@@ -27,7 +27,7 @@ x_column = ['Weight', 'Height', 'Age']
 y_column = ['Biacromial diameter']
 
 '''column(s) names to group by'''
-column_groupby = [] #['Gender']
+column_groupby = []  # i.e ['Gender']
 
 '''result output path'''
 output_file_path = r'c:\Temp'

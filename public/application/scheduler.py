@@ -40,9 +40,9 @@ class Controller(object):
         if not (':' in str(number)):
             job = schedule.every(int(number)).seconds.do(self.job, fld_name)
         else:
-            print('Before setting...')
             job = schedule.every().day.at(str(number)).do(self.job, fld_name)
             print('setting interval..')
+        # alternate ways to schedule event - as shown in schedule api doc.
         # schedule.every(10).seconds.do(job)
         # schedule.every(10).minutes.do(job)
         # schedule.every().hour.do(job)
@@ -99,7 +99,7 @@ def process(ctrl_schedule):
         # add new items to scheduler when file size > 0
         for (name,interval) in ctrl_schedule.process_schedule_pending(fname=scheduler_controller_pending):
             print(f'name: {name} => interval: {interval}')
-            ctrl_schedule.set_interval(name, 10)#interval) #10     #todo change interval to input interval
+            ctrl_schedule.set_interval(name, 10)#interval)      #todo change interval to input interval, set for demo
     if os.stat(scheduler_controller_canceling).st_size > 0:
         # cancel items from scheduler when file size > 0
         ctrl_schedule.process_schedule_canceling(fname=scheduler_controller_canceling)
