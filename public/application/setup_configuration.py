@@ -12,7 +12,7 @@
 ###########################################################################
 
 '''unique identifier'''
-task_name = 'sched07'
+task_name = 'sched01'
 
 '''url data source'''
 url_to_data = 'http://jse.amstat.org/datasets/body.dat.txt'

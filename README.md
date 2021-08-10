@@ -33,6 +33,8 @@ I expect that for future work, additional features that could be added are:
 - [ ] Add capability for mean data analysis
 
 ## Build and Run
+This application makes use of `python` and `nodeJs`, some prerequisites are:
+* `npm install -g node-modules`
 * `pip install -r requirements.txt`
 #####  Scheduling
 To enable scheduling - this is currently a standalone file run in the background that monitors `pending_schedule.txt` and `cancel_schedule.txt` once a task(s) have been scheduled from the main application
