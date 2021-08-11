@@ -47,7 +47,7 @@ To enable scheduling - this is currently a standalone file run in the background
 ## Example
 This configuration file contains the main settings the users would like the program to
 analyze.
-
+`Sample Configuration File`
 ```python
 '''unique identifier'''
 task_name = 'task-name'
@@ -87,6 +87,16 @@ Tested with:
 * `python37`
 * `nodejs`
 * currently on `Windows platform`
+
+## Summary
+ 
+`video` [Analytika - short version](https://media.pdx.edu/media/t/1_9keusvu1)
+
+
+`video` [Analytika - detailed version](https://media.pdx.edu/media/t/1_109hqpo6)
+
+![alt interface image](public/img/analytika.png)
+
 
 ## Acknowledgements
  Thanks to `Bart Massey` for the useful information provided in making this class project a success.
