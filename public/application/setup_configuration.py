@@ -12,7 +12,7 @@
 ###########################################################################
 
 '''unique identifier'''
-task_name = 'sched07'
+task_name = 'sched01'
 
 '''url data source'''
 url_to_data = 'http://jse.amstat.org/datasets/body.dat.txt'
@@ -27,7 +27,7 @@ x_column = ['Weight', 'Height', 'Age']
 y_column = ['Biacromial diameter']
 
 '''column(s) names to group by'''
-column_groupby = [] #['Gender']
+column_groupby = []  # i.e ['Gender']
 
 '''result output path'''
 output_file_path = r'c:\Temp'

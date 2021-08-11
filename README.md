@@ -33,6 +33,8 @@ I expect that for future work, additional features that could be added are:
 - [ ] Add capability for mean data analysis
 
 ## Build and Run
+This application makes use of `python` and `nodeJs`, some prerequisites are:
+* `npm install -g node-modules`
 * `pip install -r requirements.txt`
 #####  Scheduling
 To enable scheduling - this is currently a standalone file run in the background that monitors `pending_schedule.txt` and `cancel_schedule.txt` once a task(s) have been scheduled from the main application
@@ -45,7 +47,7 @@ To enable scheduling - this is currently a standalone file run in the background
 ## Example
 This configuration file contains the main settings the users would like the program to
 analyze.
-
+`Sample Configuration File`
 ```python
 '''unique identifier'''
 task_name = 'task-name'
@@ -85,6 +87,16 @@ Tested with:
 * `python37`
 * `nodejs`
 * currently on `Windows platform`
+
+## Summary
+ 
+`video` [Analytika - short version](https://media.pdx.edu/media/t/1_9keusvu1)
+
+
+`video` [Analytika - detailed version](https://media.pdx.edu/media/t/1_109hqpo6)
+
+![alt interface image](public/img/analytika.png)
+
 
 ## Acknowledgements
  Thanks to `Bart Massey` for the useful information provided in making this class project a success.
